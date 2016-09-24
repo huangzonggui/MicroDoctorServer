@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 设置返回json数据 -->
+	<package name="com.zhuolang.action" extends="struts-default,json-default">
+		<!-- 拦截add_user的URL，交由UserAction类中的add方法处理 -->
+		<action name="add_user" class="com.zhuolang.action.UserAction"
+			method="add">
+		</action>
+	</package>
+</struts>    
