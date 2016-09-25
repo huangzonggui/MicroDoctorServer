@@ -14,14 +14,13 @@ import com.zhuolang.service.IUserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @Component
-@ContextConfiguration(locations = { "file:WebRoot/WEB-INF/applicationContext.xml"})  
-//@ContextConfiguration(locations={"classpath:applicationContext.xml"})
+@ContextConfiguration(locations={"classpath:applicationContext.xml"})
 public class UserTest {
 
 	@Autowired
 	IUserService service;
 	@Test
-	public void testadd() {
+	public void testAdd() {
 		System.out.println("service:"+service);
 		User user = new User();
 		user.setNickname("nickname");
@@ -39,15 +38,24 @@ public class UserTest {
 	}
 	
 	@Test
-	public void testdelete() {
-		service.deleteUser(15);
+	public void testDeleteByName(){
+		String name="黄宗贵";
+		String hql = "from User where name = '"+name+"'";
+		service.deleteUser(service.findUser(hql));
 	}
 	
 	@Test
-	public void testupdate(){
+	public void testDeleteByNickname(){
+		String nickname="nickname";
+		String hql = "from User where nickname = '"+nickname+"'";
+		service.deleteUser(service.findUser(hql));
+	}
+	
+	@Test
+	public void testUpdate(){
 		User user = new User();
 		// 根据主键id来更新信息，将整个user传到数据库，通过id找到要更新的user
-		user.setId(12);
+		user.setId(21);
 		user.setNickname("nickname");
 		user.setPassword("123456");
 		user.setName("吴乃福");
@@ -62,8 +70,10 @@ public class UserTest {
 	}
 	
 	@Test
-	public void testfind(){
-		List<User> list = service.findUser();
+	public void testFind(){
+		String name="吴乃福";
+		String hql = "from User where name = '"+name+"'";
+		List<User> list = service.findUser(hql);
 		System.out.println(list);
 	}
 

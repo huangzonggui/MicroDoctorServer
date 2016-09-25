@@ -1,5 +1,6 @@
 package com.zhuolang.dao.impl;
 
+
 import org.springframework.stereotype.Repository;
 
 import com.zhuolang.dao.IUserDao;
@@ -14,8 +15,4 @@ import com.zhuolang.model.User;
 @Repository("userDao")
 public class UserDao extends BaseDao<User> implements IUserDao {
 	
-	public void delete(int id){
-		this.getCurrentSession().delete(get(User.class, id));
-	}
-
 }

@@ -2,16 +2,12 @@ package com.zhuolang.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.json.annotations.JSON;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -91,8 +87,11 @@ public class UserAction extends ActionSupport {
 		// HttpServletRequest request = ServletActionContext.getRequest();
 		// int id = (int) request.getAttribute("user_id");
 		response.setCharacterEncoding("text/html;charset=utf-8");
-
-		service.deleteUser(2);
+		
+		String name="黄宗贵";
+		String hql = "from User where name = '"+name+"'";
+		service.deleteUser(service.findUser(hql));
+		
 		// 测试输出json数据
 		PrintWriter out = response.getWriter();
 		// JSON在传递过程中是普通字符串形式传递的，这里简单拼接一个做测试
@@ -138,7 +137,9 @@ public class UserAction extends ActionSupport {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		 HttpServletRequest request=ServletActionContext.getRequest();
 		response.setContentType("text/html;charset=utf-8");
-		List<User> list = service.findUser();
+		String name="吴乃福";
+		String hql = "from User where name = '"+name+"'";
+		List<User> list = service.findUser(hql);
 		if (list != null && list.size() > 0) {
 				request.setAttribute("students_list", list);
 		}

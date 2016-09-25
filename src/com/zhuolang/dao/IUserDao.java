@@ -7,5 +7,4 @@ import com.zhuolang.model.User;
  *
  */
 public interface IUserDao extends IBaseDao<User>{
-	public void delete(int id);
 }

@@ -11,8 +11,8 @@
 	<!-- 自动扫描Spring注解配置,扫描com.zhuolang包下的所有注释类 -->
 	<context:component-scan base-package="com.zhuolang" />
 	<!-- 自动加载属性配置文件，加载目录下得数据配置文件 -->
-<!-- 	<context:property-placeholder location="/WEB-INF/jdbc.properties" /> -->
-	<context:property-placeholder location="file:WebRoot/WEB-INF/jdbc.properties" />
+	<context:property-placeholder location="classpath:jdbc.properties" />
+<!-- 	<context:property-placeholder location="file:WebRoot/WEB-INF/jdbc.properties" /> -->
 	<!-- 配置数据源：使用C3P0方式（推荐） -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close" p:driverClass="${jdbc.driverClassName}"

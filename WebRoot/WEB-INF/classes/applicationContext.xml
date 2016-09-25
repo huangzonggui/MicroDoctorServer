@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<!-- 说明：下面有的Bean配置提供了多种方案，请根据需要采用某一种（别忘了注释掉其他同类方案） -->
+
+	<!-- 自动扫描Spring注解配置,扫描com.zhuolang包下的所有注释类 -->
+	<context:component-scan base-package="com.zhuolang" />
+	<!-- 自动加载属性配置文件，加载目录下得数据配置文件 -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+<!-- 	<context:property-placeholder location="file:WebRoot/WEB-INF/jdbc.properties" /> -->
+	<!-- 配置数据源：使用C3P0方式（推荐） -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close" p:driverClass="${jdbc.driverClassName}"
+		p:jdbcUrl="${jdbc.url}" p:user="${jdbc.username}" p:password="${jdbc.password}" />
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+		<!--自动扫描实体类，扫描包下的所有的实体类 :还要不要mapping??:用了注释就不用mapping了 />-->
+		<property name="packagesToScan" value="com.zhuolang.model"/>
+	</bean>
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory" />
+
+
+	<!-- 配置声明式事务：方法一，在Service实现类或者public实现方法上使用注解@Transactional，则此类或方法就会启用事务机制 -->
+	<!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->
+	<!-- 配置声明式事务：方法二，使用tx/aop命名空间的配置（其实还有方法三，由于快要过时不推荐使用了，这里就不给出方法三的配置了） -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>	
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="edit*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="new*" propagation="REQUIRED" />
+			<tx:method name="set*" propagation="REQUIRED" />
+			<tx:method name="remove*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="change*" propagation="REQUIRED" />
+			<tx:method name="get*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="find*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="load*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="search*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="*" propagation="REQUIRED" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="mypointcut" expression="execution(* com.**.service..*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="mypointcut" />
+	</aop:config>
+
+	<!-- 下面三个Bean的配置可有可无，但配置后用处更大，通常用于BaseDao类、其他Dao类或特殊工具类中 -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<bean id="hibernateDaoSupport"
+		class="org.springframework.orm.hibernate4.support.HibernateDaoSupport"
+		p:hibernateTemplate-ref="hibernateTemplate" abstract="true" />
+
+	<bean id="sessionFactoryUtils" class="org.springframework.orm.hibernate4.SessionFactoryUtils"
+		abstract="true" />
+
+</beans>
