@@ -13,6 +13,9 @@
 		<action name="update_user" class="com.zhuolang.action.UserAction"
 			 method="update">
 		</action>
+		<action name="find_user" class="com.zhuolang.action.UserAction"
+			 method="find">
+		</action>
 		
 		
 		<action name="add_userModel" class="com.zhuolang.action.UserModelAction"

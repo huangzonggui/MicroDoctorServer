@@ -1,5 +1,7 @@
 package com.zhuolang.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.zhuolang.model.User;
@@ -12,6 +14,6 @@ import com.zhuolang.model.User;
 public interface IUserService {
 	public void addUser(User user);
 	public void deleteUser(int id);
-//	public void updateUser(String name,User user);
 	public void updateUser(User user);
+	public List<User> findUser();
 }

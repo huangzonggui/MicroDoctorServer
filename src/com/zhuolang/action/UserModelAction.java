@@ -8,13 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.zhuolang.model.UserModel;
 import com.zhuolang.service.IUserModelService;
 
-//@Controller
 public class UserModelAction extends ActionSupport {
 	/**
 	 * 用来表明类的不同版本间的兼容性。如果你修改了此类, 要修改此值。 否则以前用老版本的类序列化的类恢复时会出错。

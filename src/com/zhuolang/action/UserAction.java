@@ -3,6 +3,7 @@ package com.zhuolang.action;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.json.annotations.JSON;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -23,6 +25,7 @@ import com.zhuolang.service.IUserService;
  * @author jat
  *
  */
+@Controller
 public class UserAction extends ActionSupport {
 	/**
 	 * 用来表明类的不同版本间的兼容性。如果你修改了此类, 要修改此值。 否则以前用老版本的类序列化的类恢复时会出错。
@@ -100,14 +103,18 @@ public class UserAction extends ActionSupport {
 		out.close();
 	}
 
+	/**
+	 * 测试修改
+	 * 
+	 */
 	public void update() {
 		HttpServletResponse response = ServletActionContext.getResponse();
-//		HttpServletRequest request = ServletActionContext.getRequest();
-//		request.getAttribute("id");
-//		request.getAttribute("");
+		// HttpServletRequest request = ServletActionContext.getRequest();
+		// request.getAttribute("id");
+		// request.getAttribute("");
 		response.setCharacterEncoding("text/html;charset=utf-8");
 		User user = new User();
-		//根据主键id来更新信息，将整个user传到数据库，通过id找到要更新的user
+		// 根据主键id来更新信息，将整个user传到数据库，通过id找到要更新的user
 		user.setId(11);
 		user.setNickname("nickname");
 		user.setPassword("123456");
@@ -120,5 +127,25 @@ public class UserAction extends ActionSupport {
 		user.setIntroduction("大家好，我叫吴乃福jaslfjlajflajsfajsd");
 		user.setType(0);
 		service.updateUser(user);
+	}
+
+	/**
+	 * 测试查询
+	 * 
+	 * @throws IOException
+	 */
+	public void find() throws IOException {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		 HttpServletRequest request=ServletActionContext.getRequest();
+		response.setContentType("text/html;charset=utf-8");
+		List<User> list = service.findUser();
+		if (list != null && list.size() > 0) {
+				request.setAttribute("students_list", list);
+		}
+		PrintWriter out = response.getWriter();
+		out.println(list);
+		out.flush();
+		out.close();
+
 	}
 }

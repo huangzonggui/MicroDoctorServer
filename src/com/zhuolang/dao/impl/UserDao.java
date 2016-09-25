@@ -18,8 +18,4 @@ public class UserDao extends BaseDao<User> implements IUserDao {
 		this.getCurrentSession().delete(get(User.class, id));
 	}
 
-//	@Override
-//	public void update(String name, User user) {
-//		this.getCurrentSession().update(name,user);
-//	}
 }

@@ -41,7 +41,7 @@ public class BaseDao<T> implements IBaseDao<T> {
 	public void delete(T o) {
 		this.getCurrentSession().delete(o);
 	}
-	//更新
+	//更新(通过T中的id找到要update的T)
 	public void update(T o) {
 		this.getCurrentSession().update(o);
 	}
@@ -50,10 +50,12 @@ public class BaseDao<T> implements IBaseDao<T> {
 		this.getCurrentSession().saveOrUpdate(o);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<T> find(String hql) {
 		return this.getCurrentSession().createQuery(hql).list();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<T> find(String hql, Object[] param) {
 		Query q = this.getCurrentSession().createQuery(hql);
 		if (param != null && param.length > 0) {
@@ -64,6 +66,7 @@ public class BaseDao<T> implements IBaseDao<T> {
 		return q.list();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<T> find(String hql, List<Object> param) {
 		Query q = this.getCurrentSession().createQuery(hql);
 		if (param != null && param.size() > 0) {
@@ -74,6 +77,7 @@ public class BaseDao<T> implements IBaseDao<T> {
 		return q.list();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<T> find(String hql, Object[] param, Integer page, Integer rows) {
 		if (page == null || page < 1) {
 			page = 1;
@@ -90,6 +94,7 @@ public class BaseDao<T> implements IBaseDao<T> {
 		return q.setFirstResult((page - 1) * rows).setMaxResults(rows).list();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<T> find(String hql, List<Object> param, Integer page,
 			Integer rows) {
 		if (page == null || page < 1) {
@@ -107,6 +112,7 @@ public class BaseDao<T> implements IBaseDao<T> {
 		return q.setFirstResult((page - 1) * rows).setMaxResults(rows).list();
 	}
 
+	@SuppressWarnings("unchecked")
 	public T get(Class<T> c, Serializable id) {
 		return (T) this.getCurrentSession().get(c, id);
 	}
