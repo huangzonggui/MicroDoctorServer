@@ -28,13 +28,8 @@
 				<prop key="hibernate.show_sql">true</prop>
 			</props>
 		</property>
-		<!--自动扫描实体类，扫描包下的所有的实体类 :还要不要mapping???? />-->
+		<!--自动扫描实体类，扫描包下的所有的实体类 :还要不要mapping??:用了注释就不用mapping了 />-->
 		<property name="packagesToScan" value="com.zhuolang.model"/>
-<!-- 		<property name="mappingResources"> -->
-<!--             <list> -->
-<!--                 <value>com/zhuolang/model/User.hbm.xml</value> -->
-<!--             </list> -->
-<!--         </property> -->
 	</bean>
 	<!-- 配置事务管理器 -->
 	<bean id="transactionManager"

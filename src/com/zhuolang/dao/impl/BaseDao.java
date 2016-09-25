@@ -29,23 +29,23 @@ public class BaseDao<T> implements IBaseDao<T> {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
-	private Session getCurrentSession() {
+	//改为protect，这样在子类可以获取
+	protected Session getCurrentSession() {
 		return sessionFactory.getCurrentSession();
 	}
-
+	//保存
 	public Serializable save(T o) {
 		return this.getCurrentSession().save(o);
 	}
-
+	//删除
 	public void delete(T o) {
 		this.getCurrentSession().delete(o);
 	}
-
+	//更新
 	public void update(T o) {
 		this.getCurrentSession().update(o);
 	}
-
+	
 	public void saveOrUpdate(T o) {
 		this.getCurrentSession().saveOrUpdate(o);
 	}

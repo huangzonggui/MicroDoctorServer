@@ -3,8 +3,19 @@
 <struts>
 	<!-- 设置返回json数据 -->
 	<package name="com.zhuolang.action" extends="struts-default,json-default">
-		<!-- 拦截add_user的URL，交由UserAction类中的add方法处理 -->
-		<action name="add_user" class="com.zhuolang.action.UserAction"
+<!-- 		 拦截add_user的URL，交由UserAction类中的add方法处理  -->
+		<action name="add_user" class="com.zhuolang.action.UserAction" 
+			method="add">
+		</action>
+		<action name="delete_user" class="com.zhuolang.action.UserAction"
+			 method="delete">
+		</action>
+		<action name="update_user" class="com.zhuolang.action.UserAction"
+			 method="update">
+		</action>
+		
+		
+		<action name="add_userModel" class="com.zhuolang.action.UserModelAction"
 			method="add">
 		</action>
 	</package>

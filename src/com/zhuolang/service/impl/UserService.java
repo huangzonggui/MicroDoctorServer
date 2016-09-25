@@ -17,18 +17,32 @@ public class UserService implements IUserService {
 	//注入服务层，操作数据持久化
 	@Autowired
 	IUserDao dao;
+	
 	/**
 	 * 业务逻辑操作
 	 */
 	@Override
 	public void addUser(User user) {
-		// TODO Auto-generated method stub
 		try {
 			dao.save(user);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public void deleteUser(int id) {
+		try {
+			dao.delete(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void updateUser(User user) {
+		dao.update(user);;
+	}
+
 
 }

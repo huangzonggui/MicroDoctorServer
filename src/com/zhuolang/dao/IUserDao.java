@@ -7,6 +7,6 @@ import com.zhuolang.model.User;
  *
  */
 public interface IUserDao extends IBaseDao<User>{
-//	public void addUser(User user);
-	
+	public void delete(int id);
+//	public void update(String name, User user);
 }

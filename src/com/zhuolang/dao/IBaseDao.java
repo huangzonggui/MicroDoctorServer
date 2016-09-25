@@ -18,7 +18,7 @@ public interface IBaseDao<T> {
 	/**
 	 * 删除一个对象
 	 * 
-	 * @param o
+	 * @param id
 	 */
 	public void delete(T o);
 

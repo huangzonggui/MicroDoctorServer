@@ -11,4 +11,7 @@ import com.zhuolang.model.User;
 @Service
 public interface IUserService {
 	public void addUser(User user);
+	public void deleteUser(int id);
+//	public void updateUser(String name,User user);
+	public void updateUser(User user);
 }
