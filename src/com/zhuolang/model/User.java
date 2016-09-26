@@ -22,7 +22,7 @@ public class User {
 	private String name;
     @Column(name="age", length=11) 
 	private int age;
-    @Column(name="gender", length=4) 
+    @Column(name="gender", length=4)
 	private int gender;//性别:男（0）女（1）
     @Column(name="phone", length=225) 
 	private String phone;

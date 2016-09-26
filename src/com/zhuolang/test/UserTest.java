@@ -25,14 +25,14 @@ public class UserTest {
 		User user = new User();
 		user.setNickname("nickname");
 		user.setPassword("123456");
-		user.setName("黄宗贵");
+		user.setName("吴乃福");
 		user.setAge(18);
 		user.setGender(1);
 		user.setPhone("18925060991");
 		user.setAddress("廉江");
 		user.setSignature("道不同，不相为谋");
-		user.setIntroduction("大家好，我叫黄阿贵jaslfjlajflajsfajsd|");
-		user.setType(1);
+		user.setIntroduction("大家好，我叫吴乃福jaslfjlajflajsfajsd");
+		user.setType(0);
 
 		service.addUser(user);
 	}

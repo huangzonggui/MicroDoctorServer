@@ -31,10 +31,10 @@ public class UserModelAction extends ActionSupport {
 	 */
 	public void add() throws IOException {
 		HttpServletResponse response = ServletActionContext.getResponse();
-//		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpServletRequest request = ServletActionContext.getRequest();
 
-//		user_name = (String) request.getAttribute("user_name");
-//		password = (String) request.getAttribute("password");
+		user_name = (String) request.getAttribute("user_name");
+		password = (String) request.getAttribute("password");
 
 		response.setContentType("text/html;charset=utf-8");
 		// 测试插入数据
