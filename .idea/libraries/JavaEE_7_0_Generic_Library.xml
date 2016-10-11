@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="JavaEE 7.0 Generic Library">
+    <CLASSES>
+      <root url="jar://F:/jar/MeEclipseLib/plugins/com.genuitec.eclipse.j2eedt.core_13.0.0.me201605020208/data/libraryset/EE_7/activation-1.1.jar!/" />
+      <root url="jar://F:/jar/MeEclipseLib/plugins/com.genuitec.eclipse.j2eedt.core_13.0.0.me201605020208/data/libraryset/EE_7/javaee-api-7.0.jar!/" />
+      <root url="jar://F:/jar/MeEclipseLib/plugins/com.genuitec.eclipse.j2eedt.core_13.0.0.me201605020208/data/libraryset/EE_7/javax.mail-1.5.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

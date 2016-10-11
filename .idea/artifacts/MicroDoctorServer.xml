@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="MicroDoctorServer">
+    <output-path>C:/Tomcat 8.0/webapps/MicroDoctorServer</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="MicroDoctorServer" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Web App Libraries" />
+          <element id="library" level="project" name="Spring 4.1.0 Libraries" />
+          <element id="library" level="project" name="Hibernate 4.1.4 Libraries" />
+          <element id="library" level="project" name="JavaEE 7.0 Generic Library" />
+          <element id="library" level="project" name="JSTL 1.2.2 Library" />
+          <element id="library" level="project" name="JUnit 4" />
+          <element id="library" level="project" name="Struts 2.1 Libraries" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="MicroDoctorServer/web/Web" />
+    </root>
+  </artifact>
+</component>
