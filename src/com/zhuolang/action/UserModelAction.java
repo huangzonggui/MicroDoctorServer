@@ -26,10 +26,10 @@ public class UserModelAction extends ActionSupport {
 	String password;
 	/**
 	 * 测试添加
-	 * 
+	 *
 	 * @throws IOException
 	 */
-	public void add() throws IOException {
+	public String add() throws IOException {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		HttpServletRequest request = ServletActionContext.getRequest();
 
@@ -48,6 +48,8 @@ public class UserModelAction extends ActionSupport {
 		out.println(jsonString);
 		out.flush();
 		out.close();
+
+		return "success";
 	}
 
 }

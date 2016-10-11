@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.zhuolang.model.UserModel;
 
-@Service
+//@Service
 public interface IUserModelService {
 
 	public void addUserModel(UserModel userModel);

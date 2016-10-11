@@ -35,12 +35,12 @@ public class UserAction extends ActionSupport {
 	String password;
 	/**
 	 * 测试添加
-	 * 
+	 *
 	 * @throws IOException
 	 */
-	public void add() throws IOException {
-		HttpServletResponse response = ServletActionContext.getResponse();
-		// HttpServletRequest request = ServletActionContext.getRequest();
+	public String add() throws IOException {
+		 HttpServletResponse response = ServletActionContext.getResponse();
+		 HttpServletRequest request = ServletActionContext.getRequest();
 		/*
 		 * 在调用getWriter之前未设置编码(既调用setContentType或者setCharacterEncoding方法设置编码),
 		 * HttpServletResponse则会返回一个用默认的编码(既ISO-8859-1)编码的PrintWriter实例。这样就会
@@ -49,23 +49,23 @@ public class UserAction extends ActionSupport {
 		/**
 		 * 获取参数
 		 */
-		// user_name = (String) request.getAttribute("user_name");
-		// password = (String) request.getAttribute("password");
+		 user_name = (String) request.getAttribute("user_name");
+		 password = (String) request.getAttribute("password");
 		// 进行操作。。。
 		response.setContentType("text/html;charset=utf-8");
 		// response.setCharacterEncoding("UTF-8");
 		// 测试插入数据
-		User user = new User();
-		user.setNickname("nickname");
-		user.setPassword("123456");
-		user.setName("黄宗贵");
-		user.setAge(18);
-		user.setGender(1);
-		user.setPhone("18925060991");
-		user.setAddress("廉江");
-		user.setSignature("道不同，不相为谋");
-		user.setIntroduction("大家好，我叫黄阿贵jaslfjlajflajsfajsd|");
-		user.setType(1);
+        User user = new User();
+        user.setNickname("nickname");
+        user.setPassword("123456");
+        user.setName("吴乃福");
+        user.setAge(18);
+        user.setGender(1);
+        user.setPhone("18925060991");
+        user.setAddress("廉江");
+        user.setSignature("道不同，不相为谋");
+        user.setIntroduction("大家好，我叫吴乃福");
+        user.setType(0);
 
 		service.addUser(user);
 		// 测试输出json数据
@@ -76,18 +76,19 @@ public class UserAction extends ActionSupport {
 		out.println(jsonString);
 		out.flush();
 		out.close();
-	}
+
+        return "success";
+    }
 	/**
 	 * 测试删除
 	 * 
 	 * @throws IOException
 	 */
-	public void delete() throws IOException {
+	public String delete() throws IOException {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		// HttpServletRequest request = ServletActionContext.getRequest();
 		// int id = (int) request.getAttribute("user_id");
-		response.setCharacterEncoding("text/html;charset=utf-8");
-		
+		response.setContentType("text/html;charset=utf-8");
 		String name="黄宗贵";
 		String hql = "from User where name = '"+name+"'";
 		service.deleteUser(service.findUser(hql));
@@ -100,18 +101,20 @@ public class UserAction extends ActionSupport {
 		out.println(jsonString);
 		out.flush();
 		out.close();
+
+        return "success";
 	}
 
 	/**
 	 * 测试修改
 	 * 
 	 */
-	public void update() {
+	public String update() {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		// HttpServletRequest request = ServletActionContext.getRequest();
 		// request.getAttribute("id");
 		// request.getAttribute("");
-		response.setCharacterEncoding("text/html;charset=utf-8");
+		response.setContentType("text/html;charset=utf-8");
 		User user = new User();
 		// 根据主键id来更新信息，将整个user传到数据库，通过id找到要更新的user
 		user.setId(11);
@@ -126,16 +129,20 @@ public class UserAction extends ActionSupport {
 		user.setIntroduction("大家好，我叫吴乃福jaslfjlajflajsfajsd");
 		user.setType(0);
 		service.updateUser(user);
+        return "success";
 	}
 
 	/**
 	 * 测试查询
 	 * 
 	 * @throws IOException
+     *
+     * request.setCharacterEncoding（）是设置从request中取得的值或从数据库中取出的值
+    response.setContentType("text/html;charset=gb2312")是设置页面中为中文编码
 	 */
-	public void find() throws IOException {
+	public String find() throws IOException {
 		HttpServletResponse response = ServletActionContext.getResponse();
-		 HttpServletRequest request=ServletActionContext.getRequest();
+		HttpServletRequest request=ServletActionContext.getRequest();
 		response.setContentType("text/html;charset=utf-8");
 		String name="吴乃福";
 		String hql = "from User where name = '"+name+"'";
@@ -148,5 +155,6 @@ public class UserAction extends ActionSupport {
 		out.flush();
 		out.close();
 
-	}
+        return "success";
+    }
 }

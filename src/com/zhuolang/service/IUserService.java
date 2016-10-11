@@ -10,10 +10,10 @@ import com.zhuolang.model.User;
  * @author jat
  *
  */
-@Service
+//@Service
 public interface IUserService {
-	public void addUser(User user);
-	public void updateUser(User user);
-	public List<User> findUser(String hql);
-	public void deleteUser(List<User> findUser);
+	void addUser(User user);
+	void updateUser(User user);
+	List<User> findUser(String hql);
+	void deleteUser(List<User> findUser);
 }

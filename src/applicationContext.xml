@@ -61,7 +61,7 @@
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-		<aop:pointcut id="mypointcut" expression="execution(* com.**.service..*.*(..))" />
+		<aop:pointcut id="mypointcut" expression="execution(* com.*.service..*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="mypointcut" />
 	</aop:config>
 

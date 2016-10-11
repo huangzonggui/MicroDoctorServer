@@ -39,7 +39,7 @@ public class UserTest {
 	
 	@Test
 	public void testDeleteByName(){
-		String name="黄宗贵";
+		String name="吴乃福";
 		String hql = "from User where name = '"+name+"'";
 		service.deleteUser(service.findUser(hql));
 	}
