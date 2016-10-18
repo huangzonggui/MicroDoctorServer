@@ -56,5 +56,10 @@
         <action name="delete_discuss" class="com.zhuolang.action.DiscussAction" method="delete"/>
         <action name="find_discuss" class="com.zhuolang.action.DiscussAction" method="find"/>
 
+        <action name="add_appointment" class="com.zhuolang.action.AppointmentAction" method="add"/>
+        <action name="update_appointment" class="com.zhuolang.action.AppointmentAction" method="update"/>
+        <action name="delete_appointment" class="com.zhuolang.action.AppointmentAction" method="delete"/>
+        <action name="find_appointment" class="com.zhuolang.action.AppointmentAction" method="find"/>
+
     </package>
 </struts>    
